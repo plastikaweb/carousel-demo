@@ -51,4 +51,6 @@ crashlytics-build.properties
 .DS_Store
 
 # npm modules
-/node_modules
+node_modules
+dist
+.sass-cache

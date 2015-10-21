@@ -45,7 +45,7 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: {
+            html: {
                 files: ['<%= config.appFolder %>/*.html'],
                 tasks: ['copy:dist']
             },

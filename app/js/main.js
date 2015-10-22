@@ -117,7 +117,7 @@
         this.$currentItem.addClass('shift-' + this.direction);
         this.unevents();
 
-        if(this.csstransitions) {
+        if(!this.csstransitions) {
             this.animateJs(next);
         } else {
             this.animateCss(next);
@@ -145,7 +145,6 @@
             animation = {};
 
         if(this.direction === 'right') {
-
             animation = {
                 current: '-100%',
                 next: '0%'

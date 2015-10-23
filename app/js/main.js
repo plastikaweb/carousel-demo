@@ -13,12 +13,12 @@
         this.duration = 3000;
         this.direction = null;
         this.$el = $(element);
+
         this.changeItem = $.proxy(this.changeItem, this);
     }
 
     Carousel.prototype.init = function() {
         console.log('carousel go on!');
-        this.detectMobile();
         this.build();
         this.events();
         this.initTimer();
@@ -63,37 +63,6 @@
                 direction: 'left'
             }, this.changeItem)
             .on('click', '.carousel-indicators > li', this.changeItem);
-    };
-
-    Carousel.prototype.detectMobile = function() {
-        if(typeof window.orientation !== 'undefined') {
-            //$('h1').addClass('mob');
-
-            //mobile js
-            var elem = document.createElement('script');
-            elem.src = 'https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js';
-            $('script:last').before(elem);
-
-            //mobile css
-            var css = $('<link>', {
-                'rel' : 'stylesheet',
-                'href' : 'https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css'
-            });
-
-            $('head').append(css);
-
-            this.swipeEvents();
-        }
-    };
-
-    Carousel.prototype.swipeEvents = function() {
-        this.$el
-            .on('swipeleft','.carousel-list', {
-                direction: 'right'
-            }, this.changeItem)
-            .on('swiperight','.carousel-list', {
-                direction: 'left'
-            }, this.changeItem);
     };
 
     Carousel.prototype.unevents = function() {

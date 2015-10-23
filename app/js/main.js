@@ -19,6 +19,7 @@
 
     Carousel.prototype.init = function() {
         console.log('carousel go on!');
+        this.detectMobile();
         this.build();
         this.events();
         this.initTimer();
@@ -69,6 +70,25 @@
         this.$el
             .off('click');
     };
+
+    Carousel.prototype.detectMobile = function() {
+        if(typeof window.orientation !== 'undefined') {
+            this.swipeEvents();
+            $('.carousel-indicators').addClass('bigger');
+            $('.arrow').addClass('center-vertically ');
+        }
+    };
+
+    Carousel.prototype.swipeEvents = function() {
+        this.$el
+            .on('swipeleft','.carousel-list', {
+                direction: 'right'
+            }, this.changeItem)
+            .on('swiperight','.carousel-list', {
+                direction: 'left'
+            }, this.changeItem);
+    };
+
 
     Carousel.prototype.initTimer = function() {
         this.clearTimer();

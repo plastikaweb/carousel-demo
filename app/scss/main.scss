@@ -12,13 +12,14 @@ body {
   line-height: 3em;
   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
   color: $color2;
-  background-color: $color3;
 }
 
 h1 {
   font-size: 3.5em;
 }
-
+.hide {
+  display: none!important;
+}
 .container {
   width: 90%;
   position: relative;
@@ -103,6 +104,9 @@ h1 {
   &:hover {
     opacity: 1;
   }
+  &.center-vertically {
+    bottom: 45%;
+  }
 }
 
 .carousel-indicators {
@@ -128,6 +132,11 @@ h1 {
     &:hover {
       opacity: 1;
     }
+  }
+  &.bigger li{
+    width: 35px;
+    height: 35px;
+    margin: 16px;
   }
 
 }

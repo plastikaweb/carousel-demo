@@ -18,7 +18,6 @@
     }
 
     Carousel.prototype.init = function () {
-        console.log('carousel go on!');
         this.detectMobile();
         this.build();
         this.events();

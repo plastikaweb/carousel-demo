@@ -32,6 +32,15 @@
         this.$currentItem.addClass('active');
     };
 
+    /// Detection
+    Carousel.prototype.detectMobile = function() {
+        if(typeof window.orientation !== 'undefined') {
+            this.swipeEvents();
+            $('.carousel-indicators').addClass('bigger');
+            $('.arrow').addClass('center-vertically ');
+        }
+    };
+
     Carousel.prototype.transitionDetection = function () {
         var elem = document.createElement('modernizr');
         //A list of properties to test for
@@ -45,9 +54,10 @@
                 break;
             }
         }
-
     };
 
+
+    /// Events
     Carousel.prototype.events = function() {
         var self = this;
         this.$el
@@ -71,14 +81,6 @@
             .off('click');
     };
 
-    Carousel.prototype.detectMobile = function() {
-        if(typeof window.orientation !== 'undefined') {
-            this.swipeEvents();
-            $('.carousel-indicators').addClass('bigger');
-            $('.arrow').addClass('center-vertically ');
-        }
-    };
-
     Carousel.prototype.swipeEvents = function() {
         this.$el
             .on('swipeleft','.carousel-list', {
@@ -90,6 +92,7 @@
     };
 
 
+    /// Timer
     Carousel.prototype.initTimer = function() {
         this.clearTimer();
         this.timer = setInterval(this.changeItem, this.duration);
@@ -101,6 +104,8 @@
         }
     };
 
+
+    /// Slides behavior
     Carousel.prototype.changeItem = function(e) {
 
         this.clearTimer();
@@ -108,7 +113,7 @@
         var index = typeof e !== 'undefined' ? $(e.currentTarget).data('index') : undefined;
         var direction = typeof e !== 'undefined' && typeof e.data !== 'undefined' && typeof e.data.direction !== 'undefined' ? e.data.direction : undefined;
         this.direction = direction || 'right';
-        //arrows
+            //arrows
         if (direction !== undefined) {
             if (direction === 'left') {
                 if(this.currentIndex === 0) {
@@ -123,9 +128,11 @@
                     this.currentIndex = 0;
                 }
             }
+
             //indicators
         } else if(index !== undefined) {
             this.currentIndex = index;
+
             //automatic
         }else if(this.currentIndex < this.totalItems - 1) {
             this.currentIndex++;
@@ -135,6 +142,7 @@
 
         var next = this.$el.find('.item').eq(this.currentIndex).addClass(this.direction + ' active');
         this.$currentItem.addClass('shift-' + this.direction);
+
         this.unevents();
 
         if(!this.csstransitions) {
@@ -145,6 +153,8 @@
 
     };
 
+
+    /// Animation
     Carousel.prototype.animateCss = function(next){
         setTimeout(function(){
             this.$el.addClass('transition');
@@ -186,9 +196,12 @@
 
     };
 
+
+    /// Indicators
     Carousel.prototype.updateIndicators = function() {
         $('.carousel-indicators').find('li').removeClass('active').eq(this.currentIndex).addClass('active');
     };
+
 
     //init carousel
     var carousel = new Carousel('.carousel');

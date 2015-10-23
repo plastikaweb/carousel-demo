@@ -83,7 +83,7 @@ module.exports = function (grunt) {
                     cwd: '<%= config.appFolder %>',
                     dest: '<%= config.distFolder %>',
                     src: [
-                        'images/*',
+                        'images/**/*',
                         '*.html'
                     ]
                 }]

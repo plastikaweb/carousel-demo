@@ -13,6 +13,8 @@
         this.duration = 3000;
         this.direction = null;
         this.$el = $(element);
+        this.$indicators = $('.carousel-indicators');
+        this.csstransitions = null;
 
         this.changeItem = $.proxy(this.changeItem, this);
     }
@@ -33,26 +35,15 @@
 
     /// Detection
     Carousel.prototype.detectMobile = function () {
-        if (typeof window.orientation !== 'undefined') {
+        if (utils.isMobile()) {
             this.swipeEvents();
-            $('.carousel-indicators').addClass('bigger');
+            this.$indicators.addClass('bigger');
             $('.arrow').addClass('center-vertically ');
         }
     };
 
     Carousel.prototype.transitionDetection = function () {
-        var elem = document.createElement('modernizr');
-        //A list of properties to test for
-        var props = ['transition', 'WebkitTransition', 'MozTransition', 'OTransition', 'msTransition'];
-        //Iterate through our new element's Style property to see if these properties exist
-        for (var i in props) {
-            var prop = props[i];
-            var result = elem.style[prop] !== undefined ? prop : false;
-            if (result) {
-                this.csstransitions = result;
-                break;
-            }
-        }
+        this.csstransitions = utils.cssTransitionSupported();
     };
 
 
@@ -198,7 +189,7 @@
 
     /// Indicators
     Carousel.prototype.updateIndicators = function () {
-        $('.carousel-indicators').find('li').removeClass('active').eq(this.currentIndex).addClass('active');
+        this.$indicators.find('li').removeClass('active').eq(this.currentIndex).addClass('active');
     };
 
 

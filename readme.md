@@ -1,6 +1,11 @@
 How To: Carousel
 ================
 
+System pre-requisites:
+---------------
+1. Node and npm installed
+2. Git installed
+
 To run the build:
 -----------------
  1. Run npm install from the command prompt
